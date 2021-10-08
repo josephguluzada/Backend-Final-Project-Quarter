@@ -17,5 +17,7 @@ namespace Quarter.Models
         public DbSet<SaleManager> SaleManagers { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<ContactUsItem> ContactUsItems { get; set; }
     }
 }

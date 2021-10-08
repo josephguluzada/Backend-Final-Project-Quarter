@@ -39,6 +39,8 @@ namespace Quarter.Models
         public string SupportMail { get; set; }
         [StringLength(maximumLength: 150)]
         public string AboutImage { get; set; }
+        [StringLength(maximumLength: 150)]
+        public string AboutImage2 { get; set; }
         [StringLength(maximumLength: 50)]
         public string AboutTitle { get; set; }
         [StringLength(maximumLength: 250)]
