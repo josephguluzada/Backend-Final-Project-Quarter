@@ -146,3 +146,4 @@ C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Deb
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Team\Index.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Service\Index.cshtml.g.cs

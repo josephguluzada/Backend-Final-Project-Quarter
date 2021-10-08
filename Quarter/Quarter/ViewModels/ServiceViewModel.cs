@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Quarter.ViewModels
 {
-    public class HomeViewModel
+    public class ServiceViewModel
     {
-        public List<Slider> Sliders { get; set; }
         public List<Service> Services { get; set; }
     }
 }
