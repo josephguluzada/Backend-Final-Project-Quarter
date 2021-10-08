@@ -16,5 +16,6 @@ namespace Quarter.Models
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<SaleManager> SaleManagers { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Setting> Settings { get; set; }
     }
 }

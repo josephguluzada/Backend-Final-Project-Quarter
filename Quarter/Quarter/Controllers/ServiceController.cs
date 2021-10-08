@@ -20,7 +20,8 @@ namespace Quarter.Controllers
         {
             ServiceViewModel serviceVM = new ServiceViewModel
             {
-                Services = _context.Services.OrderBy(x => x.Order).ToList()
+                Services = _context.Services.OrderBy(x => x.Order).ToList(),
+                Settings = _context.Settings.FirstOrDefault()
             };
 
             return View(serviceVM);
