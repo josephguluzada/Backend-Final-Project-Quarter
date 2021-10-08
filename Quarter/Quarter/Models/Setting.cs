@@ -51,6 +51,14 @@ namespace Quarter.Models
         public string AboutUrl { get; set; }
         [StringLength(maximumLength: 150)]
         public string CopyRight { get; set; }
+        [StringLength(maximumLength: 150)]
+        public string FacebookUrl { get; set; }
+        [StringLength(maximumLength: 150)]
+        public string InstagramUrl { get; set; }
+        [StringLength(maximumLength: 150)]
+        public string DribbleUrl { get; set; }
+        [StringLength(maximumLength: 150)]
+        public string TwitterUrl { get; set; }
 
 
     }
