@@ -26,7 +26,8 @@ namespace Quarter.Controllers
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.Skip(3).Take(3).ToList(),
                 Settings = _context.Settings.FirstOrDefault(),
-                Abouts = _context.Abouts.OrderBy(x=>x.Order).ToList()
+                Abouts = _context.Abouts.OrderBy(x=>x.Order).ToList(),
+                Aminities = _context.Aminities.ToList()
             };
             return View(homeVM);
         }

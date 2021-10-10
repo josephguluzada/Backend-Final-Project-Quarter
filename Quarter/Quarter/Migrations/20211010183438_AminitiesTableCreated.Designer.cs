@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quarter.Models;
 
 namespace Quarter.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211010183438_AminitiesTableCreated")]
+    partial class AminitiesTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,10 +237,6 @@ namespace Quarter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
-
-                    b.Property<string>("HomePageImage")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
 
                     b.Property<string>("InstagramIcon")
                         .HasColumnType("nvarchar(50)")

@@ -61,7 +61,8 @@ namespace Quarter.Models
         public string DribbleUrl { get; set; }
         [StringLength(maximumLength: 150)]
         public string TwitterUrl { get; set; }
-
+        [StringLength(maximumLength: 150)]
+        public string HomePageImage { get; set; }
 
     }
 }
