@@ -23,6 +23,7 @@ namespace Quarter.Controllers
         {
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.SaleStatuses = _context.SaleStatuses.ToList();
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.ToList(),
