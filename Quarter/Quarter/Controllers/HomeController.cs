@@ -22,6 +22,7 @@ namespace Quarter.Controllers
         public IActionResult Index()
         {
             ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.ToList(),
