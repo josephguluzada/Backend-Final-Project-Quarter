@@ -20,5 +20,6 @@ namespace Quarter.Models
         public DbSet<About> Abouts { get; set; }
         public DbSet<ContactUsItem> ContactUsItems { get; set; }
         public DbSet<Aminity> Aminities { get; set; }
+        public DbSet<City> Cities { get; set; }
     }
 }

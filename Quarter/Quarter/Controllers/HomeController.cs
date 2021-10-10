@@ -21,13 +21,14 @@ namespace Quarter.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Cities = _context.Cities.ToList();
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.ToList(),
                 Services = _context.Services.Skip(3).Take(3).ToList(),
                 Settings = _context.Settings.FirstOrDefault(),
                 Abouts = _context.Abouts.OrderBy(x=>x.Order).ToList(),
-                Aminities = _context.Aminities.ToList()
+                Aminities = _context.Aminities.ToList(),
             };
             return View(homeVM);
         }
