@@ -10,5 +10,7 @@ namespace Quarter.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Service> Services { get; set; }
+        public Setting Settings { get; set; }
+        public List<About> Abouts { get; set; }
     }
 }
