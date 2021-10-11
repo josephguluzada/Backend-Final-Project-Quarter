@@ -13,5 +13,7 @@ namespace Quarter.Models
         public string Name { get; set; }
         [StringLength(maximumLength: 60)]
         public string Icon { get; set; }
+
+        public List<ProductAminity> ProductAminities { get; set; }
     }
 }

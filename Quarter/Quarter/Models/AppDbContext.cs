@@ -23,5 +23,8 @@ namespace Quarter.Models
         public DbSet<City> Cities { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<SaleStatus> SaleStatuses { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductAminity> ProductAminities { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Quarter.Models
         [StringLength(maximumLength: 150)]
         public string LinkedInUrl { get; set; }
 
-
+        public List<Product> Products { get; set; }
 
     }
 }
