@@ -151,3 +151,9 @@ C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Deb
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Product\Detail.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Quarter.csproj.AssemblyReference.cache
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\_ViewImports.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\_ViewStart.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Slider\Index.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Slider\Create.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Slider\Edit.cshtml.g.cs
