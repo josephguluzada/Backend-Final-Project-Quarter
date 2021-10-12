@@ -15,23 +15,23 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(url)
-                    .then(response=> response.json())
+                    .then(response => response.json())
                     .then(data => {
-                        console.log(data)
+                        console.log(data.status)
                         if (data.status == 200) {
                             window.location.reload(true);
-                        } else {
+                        }
+                        else {
                             Swal.fire(
                                 'Error!',
                                 'Your file has not been deleted.',
                                 'error'
                             )
+
                         }
-
                     });
-
-
             }
+        
         })
 
 

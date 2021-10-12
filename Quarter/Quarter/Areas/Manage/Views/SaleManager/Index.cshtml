@@ -1,0 +1,44 @@
+﻿@model List<SaleManager>
+@{
+    ViewData["Title"] = "Index";
+    int order = 0;
+}
+
+<div class="container-fluid">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <h1>Sale Managers:</h1>
+        <a asp-action="create" asp-controller="salemanager" class="btn btn-primary">Create</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Fullname</th>
+                <th scope="col">Houses</th>
+                <th scope="col">Order</th>
+                <th scope="col">Image</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var saleManager in Model)
+            {
+                order++;
+            <tr>
+                <th scope="row">@order</th>
+                <td>@saleManager.FullName</td>
+                <td>@saleManager.Products.Count()</td>
+                <td>@saleManager.Order</td>
+                <td><img src="~/uploads/salemanager/@saleManager.Image" style="max-width:100px" /></td>
+                <td>
+                    <a asp-action="edit" asp-route-id="@saleManager.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="deletefetch" asp-route-id="@saleManager.Id" class="btn btn-danger btn-sweet-delete">Delete</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
