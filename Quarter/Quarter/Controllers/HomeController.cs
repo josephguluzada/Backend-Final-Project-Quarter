@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Quarter.Models;
 using Quarter.ViewModels;
@@ -26,11 +27,12 @@ namespace Quarter.Controllers
             ViewBag.SaleStatuses = _context.SaleStatuses.ToList();
             HomeViewModel homeVM = new HomeViewModel
             {
-                Sliders = _context.Sliders.OrderBy(x=>x.Order).ToList(),
+                Sliders = _context.Sliders.OrderBy(x => x.Order).ToList(),
                 Services = _context.Services.Skip(3).Take(3).ToList(),
                 Settings = _context.Settings.FirstOrDefault(),
-                Abouts = _context.Abouts.OrderBy(x=>x.Order).ToList(),
+                Abouts = _context.Abouts.OrderBy(x => x.Order).ToList(),
                 Aminities = _context.Aminities.ToList(),
+                Products = _context.Products.Include(x => x.City).Include(x => x.SaleManager).Include(x => x.SaleStatus).Include(x => x.ProductImages).ToList()
             };
             return View(homeVM);
         }
