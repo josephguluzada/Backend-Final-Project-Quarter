@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,5 +40,9 @@ namespace Quarter.Models
         public List<ProductImage> ProductImages { get; set; }
         public SaleStatus SaleStatus { get; set; }
         public List<ProductAminity> ProductAminities { get; set; }
+        [NotMapped]
+        public List<int> AminityIds { get; set; } = new List<int>();
+        [NotMapped]
+        public IFormFile PosterImage { get; set; }
     }
 }

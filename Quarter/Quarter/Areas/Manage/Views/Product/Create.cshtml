@@ -1,0 +1,124 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="Name">Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Name">
+                <span class="text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Desc">Description</label>
+                <input asp-for="Desc" class="form-control" placeholder="Desc">
+                <span class="text-danger" asp-validation-for="Desc"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="CreatedAt">Built year</label>
+                <input asp-for="CreatedAt" class="form-control" placeholder="CreatedAt">
+                <span class="text-danger" asp-validation-for="CreatedAt"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="SaleStatusId">SaleStatus</label>
+                <select class="form-control" asp-for="SaleStatusId" asp-items="@(new SelectList(ViewBag.SaleStatus,"Id","Name"))"></select>
+                <span class="text-danger" asp-validation-for="SaleStatusId"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="SalePrice">Price</label>
+                <input asp-for="SalePrice" class="form-control" placeholder="SalePrice">
+                <span class="text-danger" asp-validation-for="SalePrice"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="CityId">City</label>
+                <select class="form-control" asp-for="CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","Name"))"></select>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Location">Location</label>
+                <input asp-for="Location" class="form-control" placeholder="Location">
+                <span class="text-danger" asp-validation-for="Location"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="SaleManagerId">Sale Manager</label>
+                <select class="form-control" asp-for="SaleManagerId" asp-items="@(new SelectList(ViewBag.SaleManagers,"Id","FullName"))"></select>
+                <span class="text-danger" asp-validation-for="SaleManagerId"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label asp-for="ProductFloor">Product Floor</label>
+                <input asp-for="ProductFloor" class="form-control" placeholder="ProductFloor">
+                <span class="text-danger" asp-validation-for="ProductFloor"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="ProductFloorCount">Product Floor Count</label>
+                <input asp-for="ProductFloorCount" class="form-control" placeholder="ProductFloorCount">
+                <span class="text-danger" asp-validation-for="ProductFloorCount"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="RoomCount">Room Count</label>
+                <input asp-for="RoomCount" class="form-control" placeholder="RoomCount">
+                <span class="text-danger" asp-validation-for="RoomCount"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="BedCount">Bed Count</label>
+                <input asp-for="BedCount" class="form-control" placeholder="BedCount">
+                <span class="text-danger" asp-validation-for="BedCount"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="BathCount">Bath Count</label>
+                <input asp-for="BathCount" class="form-control" placeholder="BathCount">
+                <span class="text-danger" asp-validation-for="BathCount"></span>
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="ParkingCount">Parking Count</label>
+                <input asp-for="ParkingCount" class="form-control" placeholder="ParkingCount">
+                <span class="text-danger" asp-validation-for="ParkingCount"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="IsFeature" class="form-check-label">Is Featured?</label>
+                <input asp-for="IsFeature" class=" form-check-label" placeholder="IsFeature">
+                <span class="text-danger" asp-validation-for="IsFeature"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="AreaSize">Area Size</label>
+                <input asp-for="AreaSize" class="form-control" placeholder="AreaSize">
+                <span class="text-danger" asp-validation-for="AreaSize"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="Rate">Rate</label>
+                <input asp-for="Rate" class="form-control" placeholder="Rate">
+                <span class="text-danger" asp-validation-for="Rate"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="AminityIds">Aminity</label>
+                <select asp-for="AminityIds" class="form-control" asp-items="@(new SelectList(ViewBag.Aminities,"Id","Name"))"></select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="CategoryId">Category</label>
+            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))"></select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="PosterImage">Poster Image</label>
+            <input asp-for="PosterImage" class="form-control" placeholder="PosterImage">
+            <span class="text-danger" asp-validation-for="PosterImage"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+
