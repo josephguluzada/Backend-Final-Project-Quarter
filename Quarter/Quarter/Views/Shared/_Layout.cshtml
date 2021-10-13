@@ -104,7 +104,7 @@
                         <div class="col">
                             <div class="site-logo-wrap">
                                 <div class="site-logo">
-                                    <a asp-action="index" asp-controller="home"><img src="~/assets/img/logo.png" alt="Logo"></a>
+                                    <a asp-action="index" asp-controller="home"><img src="~/uploads/setting/@setting.HeaderLogo" alt="Logo"></a>
                                 </div>
                                 <div class="get-support clearfix d-none">
                                     <div class="get-support-icon">
@@ -417,7 +417,7 @@
                             <div class="footer-widget footer-about-widget">
                                 <div class="footer-logo">
                                     <div class="site-logo">
-                                        <img src="~/assets/img/@setting.FooterLogo" alt="Logo">
+                                        <img src="~/uploads/setting/@setting.FooterLogo" alt="Logo">
                                     </div>
                                 </div>
                                 <p>@setting.FooterDesc</p>
@@ -436,7 +436,7 @@
                                                 <i class="@setting.PhoneIcon"></i>
                                             </div>
                                             <div class="footer-address-info">
-                                                <p><a href="tel:+0123-456789">+0123-456789</a></p>
+                                                <p><a href="tel:+0123-456789">+@setting.Phone</a></p>
                                             </div>
                                         </li>
                                         <li>

@@ -47,7 +47,6 @@ namespace Quarter.Areas.Manage.Controllers
 
             return View(about);
         }
-
         [HttpPost]
         public IActionResult Edit(About about)
         {

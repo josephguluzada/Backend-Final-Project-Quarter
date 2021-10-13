@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quarter.Models;
 
 namespace Quarter.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211012164542_PhoneColumnAddedIntoSettingTable")]
+    partial class PhoneColumnAddedIntoSettingTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -345,6 +347,10 @@ namespace Quarter.Migrations
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
 
+                    b.Property<string>("AboutImage2")
+                        .HasColumnType("nvarchar(150)")
+                        .HasMaxLength(150);
+
                     b.Property<string>("AboutSubDesc")
                         .HasColumnType("nvarchar(150)")
                         .HasMaxLength(150);
@@ -394,10 +400,12 @@ namespace Quarter.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("FooterLogo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("HeaderLogo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -428,10 +436,6 @@ namespace Quarter.Migrations
                     b.Property<string>("PhoneIcon")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<string>("ServiceImage")
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
 
                     b.Property<string>("SupportMail")
                         .HasColumnType("nvarchar(50)")

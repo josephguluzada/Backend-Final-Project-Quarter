@@ -1,7 +1,7 @@
 ﻿@model Service
 @{
     ViewData["Title"] = "Edit";
-    List<Service> services = ViewBag.Icons;
+    List<SelectListItem> services = ViewBag.Icons;
 }
 
 <div class="container-fluid">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label>Icons</label>
-                <select class="form-control" asp-for="Icon" asp-items="@(new SelectList(ViewBag.Icons,"Icon","Icon"))"></select>
+                <select class="form-control" asp-for="Icon" asp-items="@services"></select>
             </div>
         </div>
         <div class="form-group col-md-6">

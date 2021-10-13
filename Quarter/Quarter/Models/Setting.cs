@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,10 +12,8 @@ namespace Quarter.Models
     {
         public int Id { get; set; }
         [StringLength (maximumLength:100)]
-        [Required]
         public string HeaderLogo { get; set; }
         [StringLength(maximumLength: 100)]
-        [Required]
         public string FooterLogo { get; set; }
         [StringLength(maximumLength: 100)]
         public string FacebookIcon { get; set; }
@@ -40,7 +40,7 @@ namespace Quarter.Models
         [StringLength(maximumLength: 150)]
         public string AboutImage { get; set; }
         [StringLength(maximumLength: 150)]
-        public string AboutImage2 { get; set; }
+        public string ServiceImage { get; set; }
         [StringLength(maximumLength: 50)]
         public string AboutTitle { get; set; }
         [StringLength(maximumLength: 250)]
@@ -63,6 +63,18 @@ namespace Quarter.Models
         public string TwitterUrl { get; set; }
         [StringLength(maximumLength: 150)]
         public string HomePageImage { get; set; }
+        [StringLength(maximumLength:30)]
+        public string Phone { get; set; }
 
+        [NotMapped]
+        public IFormFile HeaderImageFile { get; set; }
+        [NotMapped]
+        public IFormFile FooterImageFile { get; set; }
+        [NotMapped]
+        public IFormFile AboutImageFile { get; set; }
+        [NotMapped]
+        public IFormFile ServiceImageFile { get; set; }
+        [NotMapped]
+        public IFormFile HomePageVideoImageFile { get; set; }
     }
 }

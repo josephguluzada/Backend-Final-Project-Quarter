@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Quarter.Models;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace Quarter.Areas.Manage.Controllers
 
         public IActionResult Edit(int id)
         {
-            ViewBag.Icons = _context.Services.ToList();
+            ViewBag.Icons = _context.Services.Select(x => new SelectListItem {Value = x.Icon,Text=x.Icon }).Distinct().ToList();
             Service service = _context.Services.FirstOrDefault(x => x.Id == id);
             if (service == null) return NotFound();
 

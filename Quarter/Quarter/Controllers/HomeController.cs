@@ -32,7 +32,10 @@ namespace Quarter.Controllers
                 Settings = _context.Settings.FirstOrDefault(),
                 Abouts = _context.Abouts.OrderBy(x => x.Order).ToList(),
                 Aminities = _context.Aminities.ToList(),
-                Products = _context.Products.Include(x => x.City).Include(x => x.SaleManager).Include(x => x.SaleStatus).Include(x => x.ProductImages).ToList()
+                Products = _context.Products.Include(x => x.City).
+                                             Include(x => x.SaleManager).
+                                             Include(x => x.SaleStatus).
+                                             Include(x => x.ProductImages).ToList()
             };
             return View(homeVM);
         }
