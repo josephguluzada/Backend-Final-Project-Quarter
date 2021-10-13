@@ -44,5 +44,7 @@ namespace Quarter.Models
         public List<int> AminityIds { get; set; } = new List<int>();
         [NotMapped]
         public IFormFile PosterImage { get; set; }
+        [NotMapped]
+        public List<IFormFile> ImageFiles { get; set; }
     }
 }

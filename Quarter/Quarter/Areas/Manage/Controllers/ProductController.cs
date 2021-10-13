@@ -62,6 +62,7 @@ namespace Quarter.Areas.Manage.Controllers
                 };
                 if (product.ProductAminities == null)
                     product.ProductAminities = new List<ProductAminity>();
+
                 product.ProductAminities.Add(productAminity);
             }
 
@@ -93,6 +94,31 @@ namespace Quarter.Areas.Manage.Controllers
                 };
 
                 product.ProductImages.Add(posterImage);
+            }
+
+            if(product.ImageFiles != null)
+            {
+                foreach (var file in product.ImageFiles)
+                {
+                    if (file.ContentType != "image/jpeg" && file.ContentType != "image/png")
+                    {
+                        continue;
+                    }
+                    if (file.Length > 2097152)
+                    {
+                        continue;
+                    }
+
+                    ProductImage productImage = new ProductImage
+                    {
+                        IsPoster = false,
+                        Image = FileManager.Save(_env.WebRootPath, "uploads/product", file)
+                    };
+
+                    if (product.ProductImages == null)
+                        product.ProductImages = new List<ProductImage>();
+                    product.ProductImages.Add(productImage);
+                }
             }
 
             if (!ModelState.IsValid) return View();
