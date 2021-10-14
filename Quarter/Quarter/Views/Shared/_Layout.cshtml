@@ -129,7 +129,7 @@
                                                 <a asp-action="index" asp-controller="about">About</a>
                                             </li>
                                             <li class="menu-icon">
-                                                <a href="#">Shop</a>
+                                                <a asp-action="index" asp-controller="product">Shop</a>
                                             </li>
                                             <li class="menu-icon">
                                                 <a asp-action="index" asp-controller="team">Teams</a>
@@ -169,10 +169,19 @@
                                     <li>
                                         <a href="#"><i class="icon-user"></i></a>
                                         <ul>
-                                            <li><a href="login.html">Sign in</a></li>
-                                            <li><a href="register.html">Register</a></li>
-                                            <li><a href="account.html">My Account</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+
+                                                <li style="font-weight:bold;color:black">@User.Identity.Name</li>
+                                                <li><a asp-action="profile" asp-controller="account">My Account</a></li>
+                                                <li><a asp-action="logout" asp-controller="account">Log out</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a asp-action="login" asp-controller="account">Sign in</a></li>
+                                                <li><a asp-action="register" asp-controller="account">Register</a></li>
+                                            }
+
                                         </ul>
                                     </li>
                                 </ul>

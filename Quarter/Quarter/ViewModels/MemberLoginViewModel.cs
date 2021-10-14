@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Quarter.Areas.Manage.ViewModels
+namespace Quarter.ViewModels
 {
-    public class LoginViewModel
+    public class MemberLoginViewModel
     {
-        [StringLength(maximumLength:20,MinimumLength =5,ErrorMessage ="Username must be min:5, max:50")]
+        [StringLength(maximumLength: 20, MinimumLength = 5, ErrorMessage = "Username must be min:5, max:50")]
         public string UserName { get; set; }
         [StringLength(maximumLength: 30, MinimumLength = 5, ErrorMessage = "Password must be min:5, max:50")]
         [DataType(DataType.Password)]
