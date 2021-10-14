@@ -179,4 +179,8 @@ C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Deb
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Account\Profile.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Index.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Create.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\City\Edit.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Quarter.csproj.AssemblyReference.cache
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Dashboard\Index.cshtml.g.cs
