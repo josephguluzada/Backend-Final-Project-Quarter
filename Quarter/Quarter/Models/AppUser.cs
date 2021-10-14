@@ -11,5 +11,6 @@ namespace Quarter.Models
     {
         [StringLength(maximumLength:50)]
         public string FullName { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

@@ -26,8 +26,15 @@ using Quarter.Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\Areas\Manage\Views\_ViewImports.cshtml"
+using Quarter.Areas.Manage.ViewModels;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Areas/Manage/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"bc015fcd7ac93eeae1ed957dba3a65a5dd20cfca", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c68b278baa86113d78f254473b64d50184a5feca", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

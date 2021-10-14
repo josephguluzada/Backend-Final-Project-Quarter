@@ -175,4 +175,5 @@ C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Deb
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Account\Login.cshtml.g.cs
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Quarter.csproj.AssemblyReference.cache
