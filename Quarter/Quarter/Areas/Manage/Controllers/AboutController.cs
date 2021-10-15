@@ -52,7 +52,7 @@ namespace Quarter.Areas.Manage.Controllers
         {
             About existAbout = _context.Abouts.FirstOrDefault(x => x.Id == about.Id);
             if (existAbout == null) return NotFound();
-            if (!ModelState.IsValid == null) return View();
+            if (!ModelState.IsValid) return View();
 
             existAbout.Title = about.Title;
             existAbout.Order = about.Order;

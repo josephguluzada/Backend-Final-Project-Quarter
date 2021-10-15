@@ -14,5 +14,7 @@ namespace Quarter.ViewModels
         public List<About> Abouts { get; set; }
         public List<Aminity> Aminities { get; set; }
         public List<Product> Products { get; set; }
+        public Product LastSoldProduct { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

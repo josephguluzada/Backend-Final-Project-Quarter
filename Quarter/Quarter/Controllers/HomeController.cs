@@ -35,7 +35,9 @@ namespace Quarter.Controllers
                 Products = _context.Products.Include(x => x.City).
                                              Include(x => x.SaleManager).
                                              Include(x => x.SaleStatus).
-                                             Include(x => x.ProductImages).ToList()
+                                             Include(x => x.ProductImages).ToList(),
+                LastSoldProduct = _context.Orders.OrderByDescending(x=>x.Id).FirstOrDefault().Product,
+                Reviews = _context.Reviews.Include(x=>x.AppUser).ToList()
             };
             return View(homeVM);
         }

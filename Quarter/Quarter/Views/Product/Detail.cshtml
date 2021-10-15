@@ -94,7 +94,14 @@
                                 <i class="far fa-calendar-alt"></i>@Model.Product.CreatedAt.ToString("MMMM dd, yyyy")
                             </li>
                             <li>
-                                <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                                <a href="#">
+                                    <i class="far fa-comments"></i>
+                                    @if (Model.Reviews.Count > 0)
+                                    {
+                                        @Model.Reviews.Count()
+                                    } 
+                                    Comments
+                                </a>
                             </li>
                             <li>
                                 <a asp-action="buy" asp-controller="order" asp-route-id="@Model.Product.Id">Buy Home</a>
