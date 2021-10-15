@@ -15,7 +15,7 @@ namespace Quarter.ViewModels
         public string Fullname { get; set; }
         public string Text { get; set; }
         public int Rate { get; set; }
-
+        public Order Order { get; set; }
 
     }
 }

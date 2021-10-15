@@ -6,10 +6,19 @@
     ViewData["Title"] = "Details";
     List<Category> categories = ViewBag.Categories;
     AppUser member = null;
-            if (User.Identity.IsAuthenticated)
-            {
-                member=await usermanager.FindByNameAsync(User.Identity.Name);
-            }
+    if (User.Identity.IsAuthenticated)
+    {
+        member = await usermanager.FindByNameAsync(User.Identity.Name);
+    }
+
+    double SumOfRates = 0;
+
+    @foreach (var item in Model.Reviews)
+    {
+        SumOfRates += item.Rate;
+    }
+
+
 }
 
 
@@ -151,12 +160,22 @@
                         <h4 class="title-2">Customer Reviews</h4>
                         <div class="product-ratting">
                             <ul>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                <li><a href="#"><i class="far fa-star"></i></a></li>
-                                <li class="review-total"> <a href="#"> @Model.Reviews.Count()</a></li>
+                                @if (Model.Reviews.Count() > 0)
+                                {
+                                    @for (int i = 0; i < Math.Ceiling((double)(SumOfRates / Model.Reviews.Count())); i++)
+                                    {
+                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                    }
+                                    <li class="review-total"> <a href="#"> @Model.Reviews.Count()</a></li>
+                                }
+                                @*else
+                                    {
+                                        @for (int i = 0; i < 5; i++)
+                                        {
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                        }
+                                    }*@
+
                             </ul>
                         </div>
                         <hr>
@@ -175,11 +194,14 @@
                                                     <h6><a href="#">@item.AppUser.FullName</a></h6>
                                                     <div class="product-ratting">
                                                         <ul>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                            @for (int i = 0; i < item.Rate; i++)
+                                                            {
+                                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            }
+                                                            @*<li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                                <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                                <li><a href="#"><i class="far fa-star"></i></a></li>*@
                                                         </ul>
                                                     </div>
                                                     <p>@item.Text</p>
@@ -193,7 +215,7 @@
                         </div>
                         <!-- comment-reply -->
                         <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                            @if (member != null )
+                            @if (member != null && !member.IsAdmin && Model.Order.AppUser.Id != member.Id)
                             {
                                 <form asp-action="Comment" asp-controller="product" asp-route-id="@Model.Product.Id" method="post">
                                     <h4>Add a Review</h4>

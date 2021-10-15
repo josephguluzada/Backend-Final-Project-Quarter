@@ -36,7 +36,8 @@ namespace Quarter.Controllers
         public IActionResult Detail(int id)
         {
             ViewBag.Categories = _context.Categories.Include(x=>x.Products).ToList();
-            List<Review> reviews = _context.Reviews.Include(x=>x.AppUser).Where(x => x.IsAccepted).ToList();
+            List<Review> reviews = _context.Reviews.Include(x=>x.AppUser).Where(x => x.IsAccepted && x.ProductId == id).ToList();
+            Order order = _context.Orders.Include(x => x.AppUser).FirstOrDefault(x=>x.Product.Id == id);
             Product product = _context.Products.
                               Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
@@ -50,6 +51,7 @@ namespace Quarter.Controllers
             {
                 Product =product,
                 Reviews= reviews,
+                Order = order
             };
            
             return View(productVM);
@@ -69,6 +71,7 @@ namespace Quarter.Controllers
                 ProductId = id,
                 Rate = model.Rate,
                 Text = model.Text
+                
 
             };
             _context.Reviews.Add(review);
