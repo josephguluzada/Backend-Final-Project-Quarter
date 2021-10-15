@@ -14,5 +14,6 @@ namespace Quarter.Models
         public bool IsAdmin { get; set; }
 
         public List<Order> Orders { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

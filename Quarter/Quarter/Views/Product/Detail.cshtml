@@ -1,7 +1,15 @@
-﻿@model Product
+﻿@model ProductViewModel
+@using Microsoft.AspNetCore.Identity;
+
+@inject UserManager<AppUser> usermanager
 @{
     ViewData["Title"] = "Details";
     List<Category> categories = ViewBag.Categories;
+    AppUser member = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                member=await usermanager.FindByNameAsync(User.Identity.Name);
+            }
 }
 
 
@@ -28,7 +36,7 @@
 <div class="ltn__img-slider-area mb-90">
     <div class="container-fluid">
         <div class="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all">
-            @foreach (var item in Model.ProductImages.Where(x=>x.IsPoster == false))
+            @foreach (var item in Model.Product.ProductImages.Where(x => x.IsPoster == false))
             {
                 <div class="col-lg-12">
                     <div class="ltn__img-slide-item-4">
@@ -52,71 +60,71 @@
                     <div class="ltn__blog-meta">
                         <ul>
 
-                            @if (Model.IsFeature == true)
+                            @if (Model.Product.IsFeature == true)
                             {
-                                    <li class="ltn__blog-category">
-                                        <a href="#">Featured</a>
-                                     </li>
+                                <li class="ltn__blog-category">
+                                    <a href="#">Featured</a>
+                                </li>
                             }
 
-                                
-                        <li class="ltn__blog-category">
-                            @if (Model.SaleStatus.Name == "Sale")
-                             {
+
+                            <li class="ltn__blog-category">
+                                @if (Model.Product.SaleStatus.Name == "Sale")
+                                {
 
 
-                                <a class="bg-orange" href="#">For Sale</a>
-                             }
-                             else
-                             {
-                                 <a class="bg-orange" href="#">For Rent</a>
-                             }
+                                    <a class="bg-orange" href="#">For Sale</a>
+                                }
+                                else
+                                {
+                                    <a class="bg-orange" href="#">For Rent</a>
+                                }
 
-                        </li>
-                                <li class="ltn__blog-date">
-                                    <i class="far fa-calendar-alt"></i>@Model.CreatedAt.ToString("MMMM dd, yyyy")
-                                </li>
-                                <li>
-                                    <a href="#"><i class="far fa-comments"></i>35 Comments</a>
-                                </li>
-                            <li>
-                                <a asp-action="buy" asp-controller="order" asp-route-id="@Model.Id">Buy Home</a>
                             </li>
-                            </ul>
+                            <li class="ltn__blog-date">
+                                <i class="far fa-calendar-alt"></i>@Model.Product.CreatedAt.ToString("MMMM dd, yyyy")
+                            </li>
+                            <li>
+                                <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                            </li>
+                            <li>
+                                <a asp-action="buy" asp-controller="order" asp-route-id="@Model.Product.Id">Buy Home</a>
+                            </li>
+                        </ul>
                     </div>
-                    <h1>@Model.Name</h1>
-                    <label><span class="ltn__secondary-color"><i class="flaticon-pin"></i></span> @Model.City.Name, @Model.Location</label>
+                    <h1>@Model.Product.Name</h1>
+                    <label><span class="ltn__secondary-color"><i class="flaticon-pin"></i></span> @Model.Product.City.Name, @Model.Product.Location</label>
                     <h4 class="title-2">Description</h4>
                     <p>
-                        @Model.Desc
+                        @Model.Product.Desc
                     </p>
-                    
+
 
                     <h4 class="title-2">Property Detail</h4>
                     <div class="property-detail-info-list section-bg-1 clearfix mb-60">
                         <ul>
-                            <li><label>Product Place:</label> <span>@Model.City.Name </span></li>
-                            <li><label>Product Price:</label> <span>@Model.SalePrice ₼</span></li>
-                            <li><label>Home Area: </label> <span>@Model.AreaSize sqft</span></li>
-                            <li><label>Rooms:</label> <span>@Model.RoomCount</span></li>
-                            <li><label>Baths:</label> <span>@Model.BathCount</span></li>
+                            <li><label>Product Place:</label> <span>@Model.Product.City.Name </span></li>
+                            <li><label>Product Price:</label> <span>@Model.Product.SalePrice ₼</span></li>
+                            <li><label>Home Area: </label> <span>@Model.Product.AreaSize sqft</span></li>
+                            <li><label>Rooms:</label> <span>@Model.Product.RoomCount</span></li>
+                            <li><label>Baths:</label> <span>@Model.Product.BathCount</span></li>
                         </ul>
                         <ul>
-                            <li><label>Beds:</label> <span>@Model.BedCount</span></li>
-                            <li><label>Floors:</label> <span>@Model.ProductFloorCount</span></li>
-                            @if (Model.ProductFloor > 0)
+                            <li><label>Beds:</label> <span>@Model.Product.BedCount</span></li>
+                            <li><label>Floors:</label> <span>@Model.Product.ProductFloorCount</span></li>
+                            @if (Model.Product.ProductFloor > 0)
                             {
-                                <li><label>Floor Place:</label> <span>@Model.ProductFloor</span></li>
+                                <li><label>Floor Place:</label> <span>@Model.Product.ProductFloor</span></li>
                             }
-                            <li><label>Year built:</label> <span>@Model.CreatedAt.ToString("MMMM dd, yyyy") </span></li>
-                            <li><label>Property Status:</label> <span>@Model.SaleStatus.Name</span></li>
+                            <li><label>Year built:</label> <span>@Model.Product.CreatedAt.ToString("MMMM dd, yyyy") </span></li>
+                            <li><label>Property Status:</label> <span>@Model.Product.SaleStatus.Name</span></li>
                         </ul>
                     </div>
 
                     <h4 class="title-2">Facts and Features</h4>
                     <div class="property-detail-feature-list clearfix mb-45">
                         <ul>
-                            @foreach (var item in Model.ProductAminities)
+                            @foreach (var item in Model.Product.ProductAminities)
                             {
                                 <li>
                                     <div class="property-detail-feature-list-item">
@@ -148,7 +156,7 @@
                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
                                 <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
                                 <li><a href="#"><i class="far fa-star"></i></a></li>
-                                <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                <li class="review-total"> <a href="#"> @Model.Reviews.Count()</a></li>
                             </ul>
                         </div>
                         <hr>
@@ -156,107 +164,69 @@
                         <div class="ltn__comment-area mb-30">
                             <div class="ltn__comment-inner">
                                 <ul>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="~/assets/img/testimonial/1.jpg" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
+                                    @foreach (var item in Model.Reviews)
+                                    {
+                                        <li>
+                                            <div class="ltn__comment-item clearfix">
+                                                <div class="ltn__commenter-img">
+                                                    <img src="~/assets/img/testimonial/1.jpg" alt="Image">
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 3, 2020</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="~/assets/img/testimonial/3.jpg" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
+                                                <div class="ltn__commenter-comment">
+                                                    <h6><a href="#">@item.AppUser.FullName</a></h6>
+                                                    <div class="product-ratting">
+                                                        <ul>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <p>@item.Text</p>
+                                                    <span class="ltn__comment-reply-btn">September 3, 2020</span>
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 2, 2020</span>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="~/assets/img/testimonial/2.jpg" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Adam Smit</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 2, 2020</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
                         <!-- comment-reply -->
                         <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                            <form action="#">
-                                <h4>Add a Review</h4>
-                                <div class="mb-30">
-                                    <div class="add-a-review">
-                                        <h6>Your Ratings:</h6>
-                                        <div class="product-ratting">
-                                            <ul>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                            </ul>
+                            @if (member != null )
+                            {
+                                <form asp-action="Comment" asp-controller="product" asp-route-id="@Model.Product.Id" method="post">
+                                    <h4>Add a Review</h4>
+                                    <div class="mb-30">
+                                        <div class="add-a-review">
+                                            <h6>Your Ratings:</h6>
+                                            <div class="product-ratting">
+                                                <ul>
+                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="input-item input-item-textarea ltn__custom-icon">
-                                    <textarea placeholder="Type your comments...."></textarea>
-                                </div>
-                                <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" placeholder="Type your name....">
-                                </div>
-                                <div class="input-item input-item-email ltn__custom-icon">
-                                    <input type="email" placeholder="Type your email....">
-                                </div>
-                                <div class="input-item input-item-website ltn__custom-icon">
-                                    <input type="text" name="website" placeholder="Type your website....">
-                                </div>
-                                <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
-                                <div class="btn-wrapper">
-                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
-                                </div>
-                            </form>
+                                    <div class="input-item input-item-textarea ltn__custom-icon">
+                                        <textarea placeholder="Type your comments...." asp-for="Text"></textarea>
+                                    </div>
+                                    <input type="hidden" asp-for="Rate" value="1" id="rate" />
+                                    <div class="input-item input-item-name ltn__custom-icon">
+                                        <input type="text" asp-for="Fullname" placeholder="Type your name...." value="@member.FullName">
+                                    </div>
+                                    <div class="input-item input-item-email ltn__custom-icon">
+                                        <input type="email" asp-for="Email" placeholder="Type your email...." value="@member.Email">
+                                    </div>
+                                    <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
+                                    <div class="btn-wrapper">
+                                        <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            }
                         </div>
                     </div>
 
@@ -402,8 +372,8 @@
                     <!-- Author Widget -->
                     <div class="widget ltn__author-widget">
                         <div class="ltn__author-widget-inner text-center">
-                            <img src="~/uploads/salemanager/@Model.SaleManager.Image" alt="Image">
-                            <h5>@Model.SaleManager.FullName</h5>
+                            <img src="~/uploads/salemanager/@Model.Product.SaleManager.Image" alt="Image">
+                            <h5>@Model.Product.SaleManager.FullName</h5>
                             <small>Sale Manager</small>
                             <div class="product-ratting">
                                 <ul>
@@ -418,9 +388,9 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis distinctio, odio, eligendi suscipit reprehenderit atque.</p>
                             <div class="ltn__social-media">
                                 <ul>
-                                    <li><a href="@Model.SaleManager.FacebookUrl" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="@Model.SaleManager.TwitterUrl" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="@Model.SaleManager.LinkedInUrl" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a href="@Model.Product.SaleManager.FacebookUrl" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="@Model.Product.SaleManager.TwitterUrl" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="@Model.Product.SaleManager.LinkedInUrl" title="Linkedin"><i class="fab fa-linkedin"></i></a></li>
                                 </ul>
                             </div>
                         </div>

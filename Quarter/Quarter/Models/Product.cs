@@ -49,5 +49,6 @@ namespace Quarter.Models
 
         [NotMapped]
         public List<int> ImageFilesIds { get; set; } = new List<int>();
+        public List<Review> Reviews { get; set; }
     }
 }

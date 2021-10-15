@@ -29,5 +29,6 @@ namespace Quarter.Models
         public DbSet<ProductAminity> ProductAminities { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Review> Reviews { get; set; }
     }
 }
