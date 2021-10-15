@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Quarter.Models;
 using Quarter.ViewModels;
 using System;
@@ -14,11 +15,13 @@ namespace Quarter.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly AppDbContext _context;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
         
         public IActionResult Register()
@@ -108,12 +111,14 @@ namespace Quarter.Controllers
         public async Task<IActionResult> Profile()
         {
             AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
+
             ProfileViewModel profileVM = new ProfileViewModel
             {
                 UserName = member.UserName,
                 FullName = member.FullName,
                 Email = member.Email,
-                PhoneNumber = member.PhoneNumber
+                PhoneNumber = member.PhoneNumber,
+                Orders = _context.Orders.Include(x => x.Product).Where(x => x.AppUserId == member.Id).ToList()
             };
             return View(profileVM);
         }
@@ -125,6 +130,7 @@ namespace Quarter.Controllers
             if (!ModelState.IsValid) return View();
 
             AppUser member = await _userManager.FindByNameAsync(User.Identity.Name);
+
 
             if (!string.IsNullOrWhiteSpace(profileVM.ConfirmNewPassword) && !string.IsNullOrWhiteSpace(profileVM.NewPassword))
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Quarter.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -33,5 +34,7 @@ namespace Quarter.ViewModels
         [StringLength(maximumLength: 25, MinimumLength = 5)]
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
+
+        public List<Order> Orders { get; set; }
     }
 }

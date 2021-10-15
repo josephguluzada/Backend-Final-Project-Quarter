@@ -1,6 +1,7 @@
 ﻿@model ProfileViewModel
 @{
     ViewData["Title"] = "Profile";
+    int order = 0;
 }
 
 
@@ -35,55 +36,60 @@
                                     <div class="col-lg-4">
                                         <div class="ltn__tab-menu-list mb-50">
                                             <div class="nav">
-                                                <a data-bs-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
-                                                <a class="active show" data-bs-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
+                                                <a data-bs-toggle="tab" href="#liton_tab_1_2" class="active show">Orders <i class="fas fa-file-alt"></i></a>
+                                                <a  data-bs-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
                                                 <a asp-action="logout" asp-controller="account">Logout <i class="fas fa-sign-out-alt"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-8">
                                         <div class="tab-content">
-                                            <div class="tab-pane fade" id="liton_tab_1_2">
+                                            <div class="tab-pane fade active show" id="liton_tab_1_2">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <div class="table-responsive">
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
                                                                     <th>Order</th>
+                                                                    <th>Product Name</th>
                                                                     <th>Date</th>
+                                                                    <th>Price</th>
                                                                     <th>Status</th>
-                                                                    <th>Total</th>
-                                                                    <th>Action</th>
+                                                                    <th>House</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr>
-                                                                    <td>1</td>
-                                                                    <td>Jun 22, 2019</td>
-                                                                    <td>Pending</td>
-                                                                    <td>$3000</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>2</td>
-                                                                    <td>Nov 22, 2019</td>
-                                                                    <td>Approved</td>
-                                                                    <td>$200</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>3</td>
-                                                                    <td>Jan 12, 2020</td>
-                                                                    <td>On Hold</td>
-                                                                    <td>$990</td>
-                                                                    <td><a href="cart.html">View</a></td>
-                                                                </tr>
+                                                                @foreach (var item in Model.Orders)
+                                                                {
+                                                                    order++;
+                                                                    <tr>
+                                                                        <td>@order</td>
+                                                                        <td>@item.Product.Name</td>
+                                                                        <td>@item.CreatedAt.ToString("MMMM dd, yyyy")</td>
+                                                                        <td>@item.Price</td>
+                                                                        <td>
+                                                                            @if (item.Status == Quarter.Models.Enums.OrderStatus.Accepted)
+                                                                            {
+                                                                                <h5><span style="padding: 5px; background-color: green; border-radius: 3px; display: inline-block; margin-top: 2px; color: white; font-weight: 600; font-size: 1rem; min-width: 90px; text-align: center">Accepted</span></h5>
+                                                                            }
+                                                                            else if (item.Status == Quarter.Models.Enums.OrderStatus.Rejected)
+                                                                            {
+                                                                                <h5><span style="padding: 5px; background-color: red; border-radius: 3px; display: inline-block; margin-top: 2px; color: white; font-weight: 600; font-size: 1rem; min-width: 90px;text-align:center">Rejected</span></h5>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <h5><span style="padding: 5px; background-color: lightslategrey; border-radius: 3px; display: inline-block; margin-top: 2px; color: white; font-weight: 600; font-size: 1rem; min-width: 90px;text-align:center">Pending</span></h5>
+                                                                            }
+                                                                        </td>
+                                                                        <td><a asp-action="detail" asp-controller="product" asp-route-id="@item.Product.Id">View</a></td>
+                                                                    </tr>
+                                                                }
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade active show" id="liton_tab_1_5">
+                                            <div class="tab-pane fade " id="liton_tab_1_5">
                                                 <div class="ltn__myaccount-tab-content-inner">
                                                     <p>The following addresses will be used on the checkout page by default.</p>
                                                     <div class="ltn__form-box">
