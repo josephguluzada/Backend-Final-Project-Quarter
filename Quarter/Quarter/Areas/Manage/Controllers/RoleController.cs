@@ -36,16 +36,46 @@ namespace Quarter.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IdentityRole identityRole)
+        public async Task<IActionResult> Create(IdentityRole role)
         {
             if (!ModelState.IsValid) return View();
 
-            await _roleManager.CreateAsync(identityRole);
-            await _roleManager.UpdateAsync(identityRole);
+            await _roleManager.CreateAsync(role);
+            await _roleManager.UpdateAsync(role);
 
             return RedirectToAction("index", "role");
         }
+        [Authorize(Roles ="SuperAdmin")]
+        public IActionResult Edit(string name)
+        {
+            IdentityRole role = _roleManager.Roles.FirstOrDefault(x => x.Name == name);
+            if (role == null) return NotFound();
+            TempData["name"] = name;
 
+            return View(role);
+        }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Edit(IdentityRole identityRole)
+        {
+            var name = TempData["name"];
+            IdentityRole existRole = _roleManager.Roles.FirstOrDefault(x => x.Name == name.ToString());
+            if (existRole == null) return NotFound();
+            existRole.Name = identityRole.Name;
+
+            await _roleManager.UpdateAsync(existRole);
+
+            return RedirectToAction("index","role");
+        }
+
+        public async Task<IActionResult> Delete(string name)
+        {
+
+            IdentityRole deleteRole = _roleManager.Roles.FirstOrDefault(x => x.Name == name);
+            await _roleManager.DeleteAsync(deleteRole);
+
+            return RedirectToAction("index","role");
+        }
     }
 }
