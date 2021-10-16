@@ -110,6 +110,9 @@
             <input asp-for="PosterImage" class="form-control" placeholder="PosterImage">
             <span class="text-danger" asp-validation-for="PosterImage"></span>
         </div>
+        <img style="max-width:150px" src="~/uploads/product/@Model.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" alt="Alternate Text" />
+
+
         <div class="form-group col-md-6">
             <label asp-for="ImageFiles">House Image Files</label>
             <input asp-for="ImageFiles" class="form-control" placeholder="ImageFiles">

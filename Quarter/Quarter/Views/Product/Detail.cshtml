@@ -173,7 +173,7 @@
                                     {
                                         <li><a href="#"><i class="fas fa-star"></i></a></li>
                                     }
-                                    <li class="review-total"> <a href="#"> @Model.Reviews.Count()</a></li>
+                                    <li class="review-total"> <a href="#">( @Model.Reviews.Count() reviews )</a></li>
                                 }
                                 @*else
                                     {
@@ -224,37 +224,41 @@
                         <div class="ltn__comment-reply-area ltn__form-box mb-30">
                             @if (member != null && !member.IsAdmin && member.Reviews == null)
                             {
-                                <form asp-action="Comment" asp-controller="product" asp-route-id="@Model.Product.Id" method="post">
-                                    <h4>Add a Review</h4>
-                                    <div class="mb-30">
-                                        <div class="add-a-review">
-                                            <h6>Your Ratings:</h6>
-                                            <div class="product-ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star rank"></i></a></li>
-                                                </ul>
-                                            </div>
+                            <form asp-action="Comment" asp-controller="product" asp-route-id="@Model.Product.Id" method="post">
+                                <h4>Add a Review</h4>
+                                <div class="mb-30">
+                                    <div class="add-a-review">
+                                        <h6>Your Ratings:</h6>
+                                        <div class="product-ratting">
+                                            <ul>
+                                                <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                                <li><a href="#"><i class="fas fa-star rank"></i></a></li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="input-item input-item-textarea ltn__custom-icon">
-                                        <textarea placeholder="Type your comments...." asp-for="Text"></textarea>
-                                    </div>
-                                    <input type="hidden" asp-for="Rate" value="1" id="rate" />
-                                    <div class="input-item input-item-name ltn__custom-icon">
-                                        <input type="text" asp-for="Fullname" placeholder="Type your name...." value="@member.FullName">
-                                    </div>
-                                    <div class="input-item input-item-email ltn__custom-icon">
-                                        <input type="email" asp-for="Email" placeholder="Type your email...." value="@member.Email">
-                                    </div>
-                                    <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
-                                    <div class="btn-wrapper">
-                                        <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
-                                    </div>
-                                </form>
+                                </div>
+                                <div class="input-item input-item-textarea ltn__custom-icon">
+                                    <textarea placeholder="Type your comments...." asp-for="Text"></textarea>
+                                    <span class="text-danger" asp-validation-for="Text"></span>
+                                </div>
+                                <input type="hidden" asp-for="Rate" value="1" id="rate" />
+                                <div class="input-item input-item-name ltn__custom-icon">
+                                    <input type="text" asp-for="Fullname" placeholder="Type your name...." value="@member.FullName">
+                                    <span class="text-danger" asp-validation-for="Fullname"></span>
+                                </div>
+                                <div class="input-item input-item-email ltn__custom-icon">
+                                    <input type="email" asp-for="Email" placeholder="Type your email...." value="@member.Email">
+                                    <span class="text-danger" asp-validation-for="Email"></span>
+                                </div>
+                                <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
+                                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                                <div class="btn-wrapper">
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
+                                </div>
+                            </form>
                             }
                         </div>
                     </div>

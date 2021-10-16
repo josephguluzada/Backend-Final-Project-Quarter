@@ -9,7 +9,7 @@ namespace Quarter.Models
     public class Review
     {
         public int Id { get; set; }
-        [Required,StringLength(250)]
+        [Required,StringLength(600)]
         public string Text { get; set; }
         public int Rate { get; set; }
         public bool IsAccepted { get; set; } = false;

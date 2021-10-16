@@ -19,5 +19,6 @@ namespace Quarter.Services
         {
             return _context.Settings.FirstOrDefault();
         }
+
     }
 }

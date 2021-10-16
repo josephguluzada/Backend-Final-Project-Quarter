@@ -40,7 +40,7 @@
 })
 
 $(document).ready(function () {
-    $(document).on("click", ".remove-btn", function () {
+    $(document).on("click", ".remove-img-box", function () {
         $(this).parent().remove();
     })
 })

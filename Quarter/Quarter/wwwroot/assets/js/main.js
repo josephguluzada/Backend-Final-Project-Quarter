@@ -1991,7 +1991,7 @@
         elem.addEventListener('click', function () {
             document.querySelector('#rate').value = index + 1;
             for (let i = 0; i <= index; i++) {
-                ranks[i].style.color = 'red';
+                ranks[i].style.color = 'orange';
             }
         })
     })

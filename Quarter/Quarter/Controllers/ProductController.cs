@@ -62,6 +62,12 @@ namespace Quarter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Comment(int id,ProductViewModel model)
         {
+            if (!ModelState.IsValid) return View();
+            if(model.Text.Length > 600)
+            {
+                ModelState.AddModelError("Text", "Text must be fewer than 600 characters");
+                return RedirectToAction("index","error");
+            }
             Product product = _context.Products.Find(id);
             if (product == null) return NotFound();
             AppUser member =await _userManager.FindByNameAsync(User.Identity.Name);
