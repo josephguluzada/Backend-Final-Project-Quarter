@@ -33,6 +33,7 @@ namespace Quarter
                 opt.UseSqlServer(Configuration.GetConnectionString("default"));
             });
             services.AddScoped<LayoutService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddIdentity<AppUser, IdentityRole>(opt =>
              {
