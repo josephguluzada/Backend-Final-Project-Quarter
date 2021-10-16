@@ -70,7 +70,8 @@ namespace Quarter.Controllers
                 AppUserId = member.Id,
                 ProductId = id,
                 Rate = model.Rate,
-                Text = model.Text
+                Text = model.Text,
+                CreatedAt = DateTime.UtcNow
                 
 
             };

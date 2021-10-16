@@ -42,5 +42,17 @@ namespace Quarter.Areas.Manage.Controllers
 
             return RedirectToAction("index");
         }
+
+        public IActionResult Reject(int id)
+        {
+            Review review = _context.Reviews.Include(x => x.Product).Include(x => x.AppUser).FirstOrDefault(x => x.Id == id);
+            if (review == null) return NotFound();
+
+            review.IsAccepted = false;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("index");
+        }
     }
 }

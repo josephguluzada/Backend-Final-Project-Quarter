@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Quarter.Helpers;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Quarter.Areas.Manage.Controllers
 {
+    [Authorize(Roles ="SuperAdmin,Admin")]
     [Area("manage")]
     public class ProductController : Controller
     {
@@ -187,7 +189,7 @@ namespace Quarter.Areas.Manage.Controllers
                     return View();
                 }
 
-                ProductImage posterImage = _context.ProductImages.FirstOrDefault(x => x.IsPoster == true);
+                ProductImage posterImage = _context.ProductImages.Where(x=>x.ProductId == product.Id).FirstOrDefault(x => x.IsPoster == true);
                 string newFileName = FileManager.Save(_env.WebRootPath, "uploads/product", product.PosterImage);
 
                 if (posterImage == null)

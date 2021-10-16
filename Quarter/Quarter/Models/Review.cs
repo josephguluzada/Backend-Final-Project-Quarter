@@ -13,6 +13,7 @@ namespace Quarter.Models
         public string Text { get; set; }
         public int Rate { get; set; }
         public bool IsAccepted { get; set; } = false;
+        public DateTime CreatedAt { get; set; }
         public AppUser AppUser { get; set; }
         public string AppUserId { get; set; }
         public Product Product { get; set; }

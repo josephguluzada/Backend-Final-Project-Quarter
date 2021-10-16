@@ -22,9 +22,27 @@ namespace Quarter.Controllers
 
         public IActionResult Index()
         {
+            List<Product> products = _context.Products.ToList();
+            List<Order> orders = _context.Orders.Where(x=>x.Status == Models.Enums.OrderStatus.Accepted).ToList();
+
+            double sumOfAreas = 0;
+            int sumOfRooms = 0;
+            double sumOfAcceptedOrders = orders.Count();
+            foreach (var item in products)
+            {
+                sumOfAreas += item.AreaSize;
+                sumOfRooms += item.RoomCount;
+            }
+
+            
+
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.SaleStatuses = _context.SaleStatuses.ToList();
+            ViewBag.SumOfAreas = sumOfAreas;
+            ViewBag.SumOfAcceptedOrders = sumOfAcceptedOrders;
+            ViewBag.SumOfRooms = sumOfRooms;
+
             HomeViewModel homeVM = new HomeViewModel
             {
                 Sliders = _context.Sliders.OrderBy(x => x.Order).ToList(),
