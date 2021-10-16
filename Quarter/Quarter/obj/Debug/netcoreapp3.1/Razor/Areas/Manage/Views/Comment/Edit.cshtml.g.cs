@@ -41,7 +41,7 @@ using Quarter.Models.Enums;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6ae2ecc26e5fc4934a3c50b32ef6f88f33a1342", @"/Areas/Manage/Views/Comment/Edit.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"779458aee3d4d2fa4e9a1e085a8f5f6e117fd07f", @"/Areas/Manage/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c872dcbe6e2facfb5a93b2b65fe3ea14be383980", @"/Areas/Manage/Views/_ViewImports.cshtml")]
     public class Areas_Manage_Views_Comment_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Review>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "accept", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

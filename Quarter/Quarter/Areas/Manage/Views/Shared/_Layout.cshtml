@@ -1,13 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject UserManager<AppUser> usermanager
 
-@{ 
-    AppUser admin = null;
-    if (User.Identity.IsAuthenticated)
-    {
-        admin = await usermanager.FindByNameAsync(User.Identity.Name);
-    }
-}
+@{ AppUser admin = null;
+                if (User.Identity.IsAuthenticated)
+                {
+                    admin = await usermanager.FindByNameAsync(User.Identity.Name);
+                } }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,10 +157,10 @@
 
             <!-- Sidebar Message -->
             @*<div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="~/manage/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>*@
+                    <img class="sidebar-card-illustration mb-2" src="~/manage/img/undraw_rocket.svg" alt="...">
+                    <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+                    <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                </div>*@
 
         </ul>
         <!-- End of Sidebar -->

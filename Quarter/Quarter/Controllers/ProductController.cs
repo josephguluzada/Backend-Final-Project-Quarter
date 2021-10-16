@@ -38,6 +38,7 @@ namespace Quarter.Controllers
             ViewBag.Categories = _context.Categories.Include(x=>x.Products).ToList();
             List<Review> reviews = _context.Reviews.Include(x=>x.AppUser).Where(x => x.IsAccepted && x.ProductId == id).ToList();
             Order order = _context.Orders.Include(x => x.AppUser).FirstOrDefault(x=>x.Product.Id == id);
+
             Product product = _context.Products.
                               Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
@@ -46,6 +47,20 @@ namespace Quarter.Controllers
                               Include(x => x.City).
                               Include(x => x.ProductAminities).ThenInclude(x => x.Aminity).
                               FirstOrDefault(x => x.Id == id);
+
+            ViewBag.SaleHouses = _context.Products.Where(x=>x.SaleStatus.Name == "Sale").Take(2).Include(x => x.SaleManager).
+                              Include(x => x.ProductImages).
+                              Include(x => x.SaleStatus).
+                              Include(x => x.Category).
+                              Include(x => x.City).
+                              Include(x => x.ProductAminities).ThenInclude(x => x.Aminity).ToList();
+
+            ViewBag.RentHouses = _context.Products.Where(x => x.SaleStatus.Name == "Rent").Take(2).Include(x => x.SaleManager).
+                              Include(x => x.ProductImages).
+                              Include(x => x.SaleStatus).
+                              Include(x => x.Category).
+                              Include(x => x.City).
+                              Include(x => x.ProductAminities).ThenInclude(x => x.Aminity).ToList();
 
             ProductViewModel productVM = new ProductViewModel
             {
