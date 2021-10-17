@@ -39,88 +39,94 @@
                                         </div>
                                         <!-- ltn__product-item -->
 
-                                        @foreach (var item in Model)
-                                        {
-                                            <div class="col-xl-6 col-sm-6 col-12">
-                                                <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
-                                                    <div class="product-img">
-                                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"><img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" alt="#"></a>
-                                                        <div class="real-estate-agent">
-                                                            <div class="agent-img">
-                                                                <a href="team-details.html"><img src="~/uploads/salemanager/@item.SaleManager.Image" alt="#"></a>
+                                        @{
+                                            if (Model.Count > 0 && Model != null)
+                                            {
+                                                @foreach (var item in Model)
+                                                {
+                                                    <div class="col-xl-6 col-sm-6 col-12">
+                                                        <div class="ltn__product-item ltn__product-item-4 ltn__product-item-5 text-center---">
+                                                            <div class="product-img">
+                                                                <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"><img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" alt="#"></a>
+                                                                <div class="real-estate-agent">
+                                                                    <div class="agent-img">
+                                                                        <a href="team-details.html"><img src="~/uploads/salemanager/@item.SaleManager.Image" alt="#"></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-info">
+                                                                <div class="product-badge">
+                                                                    <ul>
+                                                                        @if (item.SaleStatus.Name == "Sale")
+                                                                        {
+                                                                            <li class="sale-badg">For Sale</li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <li class="sale-badg">For Rent</li>
+                                                                        }
+                                                                    </ul>
+                                                                </div>
+                                                                <h2 class="product-title"><a href="product-details.html">@item.Name</a></h2>
+                                                                <div class="product-img-location">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="locations.html"><i class="flaticon-pin"></i> @item.City.Name, @item.Location</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
+                                                                    <li>
+                                                                        <span>@item.BedCount </span>
+                                                                        Bed
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>@item.BathCount </span>
+                                                                        Bath
+                                                                    </li>
+                                                                    <li>
+                                                                        <span>@item.AreaSize </span>
+                                                                        Square Ft
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="product-hover-action">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                                                <i class="flaticon-expand"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                                                <i class="flaticon-heart-1"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="product-details.html" title="Product Details">
+                                                                                <i class="flaticon-add"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-info-bottom">
+                                                                <div class="product-price">
+                                                                    @if (item.SaleStatus.Name == "Sale")
+                                                                    {
+                                                                        <span>@item.SalePrice ₼</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span>34,900 ₼<label>/Month</label></span>
+                                                                    }
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="product-info">
-                                                        <div class="product-badge">
-                                                            <ul>
-                                                                @if (item.SaleStatus.Name == "Sale")
-                                                                {
-                                                                    <li class="sale-badg">For Sale</li>
-                                                                }
-                                                                else
-                                                                {
-                                                                    <li class="sale-badg">For Rent</li>
-                                                                }
-                                                            </ul>
-                                                        </div>
-                                                        <h2 class="product-title"><a href="product-details.html">@item.Name</a></h2>
-                                                        <div class="product-img-location">
-                                                            <ul>
-                                                                <li>
-                                                                    <a href="locations.html"><i class="flaticon-pin"></i> @item.City.Name, @item.Location</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <ul class="ltn__list-item-2--- ltn__list-item-2-before--- ltn__plot-brief">
-                                                            <li>
-                                                                <span>@item.BedCount </span>
-                                                                Bed
-                                                            </li>
-                                                            <li>
-                                                                <span>@item.BathCount </span>
-                                                                Bath
-                                                            </li>
-                                                            <li>
-                                                                <span>@item.AreaSize </span>
-                                                                Square Ft
-                                                            </li>
-                                                        </ul>
-                                                        <div class="product-hover-action">
-                                                            <ul>
-                                                                <li>
-                                                                    <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
-                                                                        <i class="flaticon-expand"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
-                                                                        <i class="flaticon-heart-1"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="product-details.html" title="Product Details">
-                                                                        <i class="flaticon-add"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-info-bottom">
-                                                        <div class="product-price">
-                                                            @if (item.SaleStatus.Name == "Sale")
-                                                            {
-                                                            <span>@item.SalePrice ₼</span>
-                                                            }
-                                                            else
-                                                            {
-                                                        <span>34,900 ₼<label>/Month</label></span>
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                }
+                                            }
                                         }
+
                                         <!--  -->
                                     </div>
                                 </div>
@@ -524,210 +530,58 @@
                             <div class="widget ltn__menu-widget">
                                 <h4 class="ltn__widget-title">Property Type</h4>
                                 <ul>
+                                    @foreach (Category category in ViewBag.Categories)
+                                    {
                                     <li>
+                                        
                                         <label class="checkbox-item">
-                                            House
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
+                                            <a asp-action="index" asp-controller="product" asp-route-categoryId="@category.Id">
+                                                @category.Name
+                                                <input type="checkbox" @(category.Id == ViewBag.CurrentCatId ? "checked" : "")>
+                                                <span class="checkmark"></span>
+                                            </a>
                                         </label>
-                                        <span class="categorey-no">3,924</span>
+                                        
+                                        <span class="categorey-no">@category.Products.Count()</span>
                                     </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Single Family
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,610</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Apartment
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,912</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Office Villa
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,687</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Luxary Home
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">1,853</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Studio
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">893</span>
-                                    </li>
+                                    }
+
                                 </ul>
                                 <hr>
                                 <h4 class="ltn__widget-title">Amenities</h4>
                                 <ul>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Dishwasher
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,924</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Floor Coverings
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,610</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Internet
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,912</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Build Wardrobes
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,687</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Supermarket
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">1,853</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Kids Zone
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">893</span>
-                                    </li>
+                                    @foreach (Aminity aminity in ViewBag.Aminities)
+                                    {
+                                        <li>
+                                            <label class="checkbox-item">
+                                                <a asp-action="index" asp-controller="product" asp-route-aminityId="@aminity.Id">
+                                                    @aminity.Name
+                                                    <input type="checkbox">
+                                                    <span class="checkmark"></span>
+                                                </a>
+                                            </label>
+                                            <span class="categorey-no">@aminity.ProductAminities.Count()</span>
+                                        </li>
+                                    }
+
                                 </ul>
                                 <hr>
-                                <h4 class="ltn__widget-title">Price Renge</h4>
+                                <h4 class="ltn__widget-title">Category</h4>
                                 <ul>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Low Budget
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">$5,000 - $10,000</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Medium
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">$10,000 - $30,000</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            High Budget
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">$30,000 Up</span>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <!-- Price Filter Widget -->
-                                <div class="widget--- ltn__price-filter-widget">
-                                    <h4 class="ltn__widget-title ltn__widget-title-border---">Filter by price</h4>
-                                    <div class="price_filter">
-                                        <div class="price_slider_amount">
-                                            <input type="submit" value="Your range:" />
-                                            <input type="text" class="amount" name="price" placeholder="Add Your Price" />
-                                        </div>
-                                        <div class="slider-range"></div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <h4 class="ltn__widget-title">Bed/bath</h4>
-                                <ul>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Single
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,924</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Double
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,610</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Up To 3
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,912</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Up To 5
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,687</span>
-                                    </li>
-                                </ul>
-                                <hr>
-                                <h4 class="ltn__widget-title">Catagory</h4>
-                                <ul>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Buying
-                                            <input type="checkbox" checked="checked">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,924</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Renting
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">3,610</span>
-                                    </li>
-                                    <li>
-                                        <label class="checkbox-item">
-                                            Selling
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                        <span class="categorey-no">2,912</span>
-                                    </li>
+                                    @foreach (SaleStatus saleStatus in ViewBag.SaleStatuses)
+                                    {
+                                        <li>
+                                            <label class="checkbox-item">
+                                                <a asp-action="index" asp-controller="product" asp-route-categoryId="@saleStatus.Id">
+                                                    @saleStatus.Name
+                                                    <input type="checkbox" @(saleStatus.Id == ViewBag.saleStatusId ? "checked" : "") >
+                                                    <span class="checkmark"></span>
+                                                </a>
+                                            </label>
+                                            <span class="categorey-no">@saleStatus.Products.Count()</span>
+                                        </li>
+                                    }
+
                                 </ul>
                             </div>
                             <!-- Category Widget -->

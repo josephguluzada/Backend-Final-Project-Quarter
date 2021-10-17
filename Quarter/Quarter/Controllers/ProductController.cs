@@ -21,12 +21,18 @@ namespace Quarter.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(string search=null,int? cityId = null,int? saleStatusId = null, int? categoryId = null)
+        public IActionResult Index(string search=null,int? cityId = null,int? saleStatusId = null, int? categoryId = null,int? aminityId = null)
         {
-            var query = _context.Products.Include(x=>x.SaleManager).Include(x=>x.City).Include(x=>x.SaleStatus).Include(x => x.Category).AsQueryable();
+
+            var query = _context.Products
+                .Include(x=>x.SaleManager).Include(x=>x.City)
+                .Include(x=>x.SaleStatus).Include(x => x.Category)
+                .Include(x=>x.ProductAminities).ThenInclude(x=>x.Aminity).AsQueryable();
             ViewBag.CurrentSearch = search;
+            ViewBag.CurrentCatId = categoryId;
             ViewBag.Cities = _context.Cities.ToList();
-            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.Categories = _context.Categories.Include(x=>x.Products).ToList();
+            ViewBag.Aminities = _context.Aminities.Include(x => x.ProductAminities).ToList();
             ViewBag.SaleStatuses = _context.SaleStatuses.ToList();
             if (!string.IsNullOrWhiteSpace(search))
                 query = query.Where(x => x.Name.Contains(search) || x.SaleManager.FullName.Contains(search));
@@ -37,6 +43,16 @@ namespace Quarter.Controllers
                 query = query.Where(x => x.SaleStatusId == saleStatusId);
             if (categoryId != null)
                 query = query.Where(x => x.CategoryId == categoryId);
+            //if (aminityId != null)
+            //{
+            //    List<ProductAminity> productAminities = _context.ProductAminities.Where(n => n.AminityId == aminityId).ToList();
+            //    List<Product> products1 = new List<Product>();
+            //    foreach (var item in productAminities)
+            //    {
+            //        products1.AddRange(_context.Products.Where(n => item.ProductId == n.Id));
+            //    }
+            //    query = products1.AsQueryable();
+            //}
 
             List<Product> products = query.Where(x=>x.IsSold == false).
                               Include(x => x.ProductImages).
@@ -44,6 +60,7 @@ namespace Quarter.Controllers
                               Include(x => x.Category).
                               Include(x => x.City).
                               Include(x => x.ProductAminities).ThenInclude(x => x.Aminity).ToList();
+
             return View(products);
         }
 

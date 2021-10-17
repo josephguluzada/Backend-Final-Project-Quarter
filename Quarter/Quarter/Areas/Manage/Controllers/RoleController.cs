@@ -68,7 +68,7 @@ namespace Quarter.Areas.Manage.Controllers
 
             return RedirectToAction("index","role");
         }
-
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete(string name)
         {
 

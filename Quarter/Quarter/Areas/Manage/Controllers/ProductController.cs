@@ -23,9 +23,9 @@ namespace Quarter.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index(string search = null)
+        public IActionResult Index(int page = 1,string search = null)
         {
-            var query = _context.Products.Include(x=>x.SaleManager).AsQueryable();
+            var query = _context.Products.Include(x=>x.SaleManager).Include(x=>x.ProductImages).AsQueryable();
             ViewBag.CurrentSearch = search;
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -35,7 +35,13 @@ namespace Quarter.Areas.Manage.Controllers
                                                       .Include(x=>x.SaleStatus)
                                                       .Include(x=>x.ProductAminities).ThenInclude(x=>x.Aminity)
                                                       .Include(x=>x.ProductImages).ToList();
-            return View(products);
+
+            var pagenatedProducts = PagenatedList<Product>.Create(query.Include(x => x.Category)
+                                                      .Include(x => x.City)
+                                                      .Include(x => x.SaleStatus)
+                                                      .Include(x => x.ProductAminities).ThenInclude(x => x.Aminity)
+                                                      .Include(x => x.ProductImages), 4, page);
+            return View(pagenatedProducts);
         }
 
         public IActionResult Create()

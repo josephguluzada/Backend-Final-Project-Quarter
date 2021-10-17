@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Quarter.Models;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Quarter.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = ("SuperAdmin,Admin"))]
     public class ServiceController : Controller
     {
         private readonly AppDbContext _context;

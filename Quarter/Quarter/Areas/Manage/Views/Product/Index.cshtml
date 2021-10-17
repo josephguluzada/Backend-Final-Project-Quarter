@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model PagenatedList<Product>
 @{
     ViewData["Title"] = "Index";
     int order = 0;
@@ -38,24 +38,46 @@
             @foreach (var product in Model)
             {
                 order++;
-            <tr>
-                <th scope="row">@order</th>
-                <td>@product.Name</td>
-                <td>@product.SalePrice</td>
-                <td>@product.City.Name</td>
-                <td>@product.Location</td>
-                <td>@product.SaleManager.FullName</td>
-                <td><img src="~/uploads/salemanager/@product.SaleManager.Image" style="max-width:100px;max-height:50px;" /></td>
-                <td><img src="~/uploads/product/@product.ProductImages.FirstOrDefault(x=>x.IsPoster == true).Image" style="max-width: 100px; max-height: 50px;" /></td>
-                <td>
-                    <a asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="deletefetch" asp-route-id="@product.Id" class="btn btn-danger btn-sweet-delete">Delete</a>
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row">@order</th>
+                    <td>@product.Name</td>
+                    <td>@product.SalePrice</td>
+                    <td>@product.City.Name</td>
+                    <td>@product.Location</td>
+                    <td>@product.SaleManager.FullName</td>
+                    <td><img src="~/uploads/salemanager/@product.SaleManager.Image" style="max-width:100px;max-height:50px;" /></td>
+                    <td><img src="~/uploads/product/@product.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" style="max-width: 100px; max-height: 50px;" /></td>
+                    <td>
+                        <a asp-action="edit" asp-route-id="@product.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="deletefetch" asp-route-id="@product.Id" class="btn btn-danger btn-sweet-delete">Delete</a>
+                    </td>
+                </tr>
             }
 
         </tbody>
     </table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item @(Model.HasPrev?"":"disabled")">
+                    <a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex-1)" asp-route-search="@ViewBag.CurrentSearch"  aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i==Model.PageIndex?"active":"")"><a class="page-link" asp-action="index" asp-route-page="@i" asp-route-search="@ViewBag.CurrentSearch" >@i</a></li>
+                }
+                <li class="page-item @(Model.HasNext?"":"disabled")">
+                    <a class="page-link" asp-action="index" asp-route-page="@(Model.PageIndex+1)" asp-route-search="@ViewBag.CurrentSearch" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
 
 
