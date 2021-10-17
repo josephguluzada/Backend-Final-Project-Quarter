@@ -28,7 +28,7 @@ namespace Quarter.Models
         public bool IsFeature { get; set; }
         public double AreaSize { get; set; }
         public int Rate { get; set; }
-
+        public bool IsSold { get; set; }
 
         public int CityId { get; set; }
         public int SaleManagerId { get; set; }

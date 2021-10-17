@@ -23,7 +23,7 @@ namespace Quarter.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> products = _context.Products.
+            List<Product> products = _context.Products.Where(x=>x.IsSold == false).
                               Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
                               Include(x => x.SaleStatus).
@@ -39,7 +39,7 @@ namespace Quarter.Controllers
             List<Review> reviews = _context.Reviews.Include(x=>x.AppUser).Where(x => x.IsAccepted && x.ProductId == id).ToList();
             Order order = _context.Orders.Include(x => x.AppUser).FirstOrDefault(x=>x.Product.Id == id);
 
-            Product product = _context.Products.
+            Product product = _context.Products.Where(x => x.IsSold == false).
                               Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
                               Include(x => x.SaleStatus).
