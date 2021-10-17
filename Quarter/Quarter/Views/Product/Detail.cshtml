@@ -277,7 +277,7 @@
                                             <a asp-action="detail" asp-controller="product"><img src="~/uploads/product/@item.ProductImages.FirstOrDefault(x=>x.IsPoster == true)?.Image" alt="#"></a>
                                             <div class="real-estate-agent">
                                                 <div class="agent-img">
-                                                    <a href="team-details.html"><img src="~/uploads/salemanager/@item.SaleManager.Image" alt="#"></a>
+                                                    <a><img src="~/uploads/salemanager/@item.SaleManager.Image" alt="#"></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,11 +287,11 @@
                                                     <li class="sale-badg">@item.SaleStatus.Name</li>
                                                 </ul>
                                             </div>
-                                            <h2 class="product-title"><a href="product-details.html">@item.Name</a></h2>
+                                            <h2 class="product-title"><a>@item.Name</a></h2>
                                             <div class="product-img-location">
                                                 <ul>
                                                     <li>
-                                                        <a href="product-details.html"><i class="flaticon-pin"></i> @item.City.Name, @item.Location</a>
+                                                        <a><i class="flaticon-pin"></i> @item.City.Name, @item.Location</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -312,17 +312,17 @@
                                             <div class="product-hover-action">
                                                 <ul>
                                                     <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
                                                             <i class="flaticon-expand"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal" data-bs-target="#liton_wishlist_modal">
+                                                        <a href="#">
                                                             <i class="flaticon-heart-1"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-details.html" title="Compare">
+                                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
                                                             <i class="flaticon-add"></i>
                                                         </a>
                                                     </li>
@@ -383,7 +383,7 @@
                                             <div class="product-hover-action">
                                                 <ul>
                                                     <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal" data-bs-target="#quick_view_modal">
+                                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
                                                             <i class="flaticon-expand"></i>
                                                         </a>
                                                     </li>
@@ -393,7 +393,7 @@
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="portfolio-details.html" title="Compare">
+                                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
                                                             <i class="flaticon-add"></i>
                                                         </a>
                                                     </li>
@@ -494,7 +494,7 @@
                         <p>We can help you realize your dream of a new home</p>
                     </div>
                     <div class="btn-wrapper">
-                        <a class="btn btn-effect-3 btn-white" href="contact.html">Explore Properties <i class="icon-next"></i></a>
+                        <a class="btn btn-effect-3 btn-white" asp-action="index" asp-controller="product" >Explore Properties <i class="icon-next"></i></a>
                     </div>
                 </div>
             </div>

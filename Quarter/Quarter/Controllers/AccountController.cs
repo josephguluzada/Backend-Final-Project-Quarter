@@ -72,7 +72,6 @@ namespace Quarter.Controllers
 
             return RedirectToAction("index", "home");
         }
-        [Authorize(Roles = "Member")]
         public IActionResult Login()
         {
             return View();
