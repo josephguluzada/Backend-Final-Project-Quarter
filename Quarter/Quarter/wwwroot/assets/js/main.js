@@ -1996,5 +1996,30 @@
         })
     })
 
+    $(document).on("click", ".add-wishlist", function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44355/home/AddToWishList/' + id)
+            .then(response => response.text())
+
+            .then(data => {
+                $('#ltn__utilize-cart-menu').html(data);
+                var count = $("#wished").data("wished-count")
+            });
+    });
+
+    $(document).on("click", ".delete", function (e) {
+        e.preventDefault();
+        var id = $(this).attr("data-id");
+
+        fetch('https://localhost:44355/home/DeleteFromWishList/' + id)
+            .then(response => response.text())
+
+            .then(data => {
+                $('#ltn__utilize-cart-menu').html(data);
+                var count = $("#wished").data("wished-count")
+            });
+    });
   
 })(jQuery);

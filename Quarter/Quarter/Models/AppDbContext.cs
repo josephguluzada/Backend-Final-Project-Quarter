@@ -30,5 +30,6 @@ namespace Quarter.Models
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<WishListItem> WishListItems { get; set; }
     }
 }

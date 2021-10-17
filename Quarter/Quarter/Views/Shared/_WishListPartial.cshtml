@@ -1,0 +1,40 @@
+﻿
+@model List<WishListViewModel>
+@{ 
+    Layout = null;
+    double totalCount = 0;
+
+    foreach (var item in Model)
+    {
+        totalCount += item.Price * item.Count;
+    }
+}
+
+<div class="ltn__utilize-menu-inner ltn__scrollbar">
+    <div class="ltn__utilize-menu-head">
+        <span class="ltn__utilize-menu-title">Wish List</span>
+        <button class="ltn__utilize-close">×</button>
+    </div>
+    <div class="mini-cart-product-area ltn__scrollbar" id="wished" data-wished-count="@Model.Count">
+        @foreach (var item in Model)
+        {
+            <div class="mini-cart-item clearfix">
+                <div class="mini-cart-img">
+                    <a href="#"><img src="/uploads/product/@item.Image" alt="Image"></a>
+                    <a class="delete" data-id="@item.ProductId" asp-action="DeleteFromWishList" asp-controller="home" asp-route-id="@item.ProductId"><span class="mini-cart-item-delete"><i class="icon-cancel"></i></span></a> 
+                </div>
+                <div class="mini-cart-info">
+                    <h6><a href="#">@item.Name</a></h6>
+                    <span class="mini-cart-quantity">@item.Price</span>
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="mini-cart-footer">
+        <div class="mini-cart-sub-total">
+            <h5>Subtotal: <span>@totalCount Manat</span></h5>
+        </div>
+    </div>
+
+</div>

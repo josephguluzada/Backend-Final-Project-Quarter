@@ -50,6 +50,12 @@ namespace Quarter.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Create(Product product)
         {
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.SaleManagers = _context.SaleManagers.ToList();
+            ViewBag.Aminities = _context.Aminities.ToList();
+            ViewBag.SaleStatus = _context.SaleStatuses.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+
             if (!_context.Cities.Any(x => x.Id == product.CityId)) ModelState.AddModelError("CityId", "City not found!");
             if (!_context.Categories.Any(x => x.Id == product.CategoryId)) ModelState.AddModelError("CategoryId", "Category not found!");
             if (!_context.SaleManagers.Any(x => x.Id == product.SaleManagerId)) ModelState.AddModelError("SaleManagerId", "Sale Manager not found!");
@@ -130,6 +136,54 @@ namespace Quarter.Areas.Manage.Controllers
                         product.ProductImages = new List<ProductImage>();
                     product.ProductImages.Add(productImage);
                 }
+            }
+
+            if(product.RoomCount < 0)
+            {
+                ModelState.AddModelError("RoomCount", "Room Count can't be below 0");
+                return View();
+            }
+
+            if (product.BathCount < 0)
+            {
+                ModelState.AddModelError("BathCount", "Bath Count can't be below 0");
+                return View();
+            }
+
+            if (product.BedCount < 0)
+            {
+                ModelState.AddModelError("BedCount", "Bed Count can't be below 0");
+                return View();
+            }
+
+            if (product.AreaSize < 0)
+            {
+                ModelState.AddModelError("AreaSize", "Area Size can't be below 0");
+                return View();
+            }
+
+            if (product.ParkingCount < 0)
+            {
+                ModelState.AddModelError("ParkingCount", "Parking Count can't be below 0");
+                return View();
+            }
+
+            if (product.ProductFloor < 0)
+            {
+                ModelState.AddModelError("ProductFloor", "Product floor can't be below 0");
+                return View();
+            }
+
+            if (product.Rate < 0)
+            {
+                ModelState.AddModelError("Rate", "Rate can't be below 0");
+                return View();
+            }
+
+            if (product.SalePrice < 0)
+            {
+                ModelState.AddModelError("SalePrice", "Price can't be below 0");
+                return View();
             }
 
             if (!ModelState.IsValid) return View();

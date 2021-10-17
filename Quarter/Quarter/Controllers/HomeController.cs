@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Quarter.Models;
@@ -14,10 +15,12 @@ namespace Quarter.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public HomeController(AppDbContext context)
+        public HomeController(AppDbContext context,UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -60,7 +63,90 @@ namespace Quarter.Controllers
             return View(homeVM);
         }
 
+        public IActionResult AddToWishList(int id)
+        {
+            Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
 
+            WishListViewModel wishListVM = null;
+
+            if (product == null) return NotFound();
+
+            AppUser member = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+
+            }
+            List<WishListViewModel> wishProduct = new List<WishListViewModel>();
+
+            if (member != null)
+            {
+                WishListItem wishListItem = _context.WishListItems.FirstOrDefault(x => x.AppUserId == member.Id && x.ProductId == id);
+
+                if (wishListItem == null)
+                {
+                    wishListItem = new WishListItem
+                    {
+                        AppUserId = member.Id,
+                        ProductId = id
+                    };
+                    _context.WishListItems.Add(wishListItem);
+                }
+
+                _context.SaveChanges();
+
+                wishProduct = _context.WishListItems.Select(x =>
+                                        new WishListViewModel
+                                        {
+                                            ProductId = x.ProductId,
+                                            Name = x.Product.Name,
+                                            Price = x.Product.SalePrice,
+                                            Image = x.Product.ProductImages.FirstOrDefault(x => x.IsPoster == true).Image
+                                        }).ToList();
+
+            }
+
+            return PartialView("_WishListPartial", wishProduct);
+            
+        }
+
+        public IActionResult DeleteFromWishList(int id)
+        {
+            Product product = _context.Products.Include(x => x.ProductImages).FirstOrDefault(x => x.Id == id);
+
+            WishListViewModel wishListVM = null;
+
+            AppUser member = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                member = _userManager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+
+            }
+            List<WishListViewModel> wishProduct = new List<WishListViewModel>();
+
+            if (member != null)
+            {
+                WishListItem wishListItem = _context.WishListItems.FirstOrDefault(x => x.AppUserId == member.Id && x.ProductId == id);
+
+                _context.WishListItems.Remove(wishListItem);
+                _context.SaveChanges();
+
+                wishProduct = _context.WishListItems.Select(x =>
+                                        new WishListViewModel
+                                        {
+                                            ProductId = x.ProductId,
+                                            Name = x.Product.Name,
+                                            Price = x.Product.SalePrice,
+                                            Image = x.Product.ProductImages.FirstOrDefault(x => x.IsPoster == true).Image
+                                        }).ToList();
+
+
+            }
+
+            return PartialView("_WishListPartial", wishProduct);
+        }
 
     }
 }
