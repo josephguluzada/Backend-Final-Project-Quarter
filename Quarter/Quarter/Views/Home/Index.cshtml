@@ -356,7 +356,7 @@
                         <div class="ltn__feature-info">
                             <h3><a asp-action="index" asp-controller="service">@service.Title</a></h3>
                             <p>@service.Desc</p>
-                            <a class="ltn__service-btn" href="service-details.html">@service.UrlText <i class="flaticon-right-arrow"></i></a>
+                            <a class="ltn__service-btn" asp-action="index" asp-controller="service">@service.UrlText <i class="flaticon-right-arrow"></i></a>
                         </div>
                     </div>
                 </div>
