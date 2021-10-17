@@ -21,7 +21,7 @@ namespace Quarter.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(string search=null,int? cityId = null,int? saleStatusId = null, int? categoryId = null,int? aminityId = null)
+        public IActionResult Index(int page = 1,string search=null,int? cityId = null,int? saleStatusId = null, int? categoryId = null,int? aminityId = null)
         {
 
             var query = _context.Products
@@ -61,7 +61,14 @@ namespace Quarter.Controllers
                               Include(x => x.City).
                               Include(x => x.ProductAminities).ThenInclude(x => x.Aminity).ToList();
 
-            return View(products);
+            var pagenatedProduct = PagenatedList<Product>.Create(query.Where(x => x.IsSold == false).
+                              Include(x => x.ProductImages).
+                              Include(x => x.SaleStatus).
+                              Include(x => x.Category).
+                              Include(x => x.City).
+                              Include(x => x.ProductAminities).ThenInclude(x => x.Aminity), 4, page);
+
+            return View(pagenatedProduct);
         }
 
         public IActionResult Detail(int id)
