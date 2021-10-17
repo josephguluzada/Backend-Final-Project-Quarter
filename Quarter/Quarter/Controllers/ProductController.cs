@@ -21,9 +21,15 @@ namespace Quarter.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search=null)
         {
-            List<Product> products = _context.Products.Where(x=>x.IsSold == false).
+            var query = _context.Products.AsQueryable();
+            ViewBag.CurrentSearch = search;
+            if (!string.IsNullOrWhiteSpace(search))
+                query = query.Where(x => x.Name.Contains(search) || x.SaleManager.FullName.Contains(search));
+
+
+            List<Product> products = query.Where(x=>x.IsSold == false).
                               Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
                               Include(x => x.SaleStatus).
