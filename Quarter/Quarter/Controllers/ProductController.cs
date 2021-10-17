@@ -21,16 +21,24 @@ namespace Quarter.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index(string search=null)
+        public IActionResult Index(string search=null,int? cityId = null,int? saleStatusId = null, int? categoryId = null)
         {
-            var query = _context.Products.AsQueryable();
+            var query = _context.Products.Include(x=>x.SaleManager).Include(x=>x.City).Include(x=>x.SaleStatus).Include(x => x.Category).AsQueryable();
             ViewBag.CurrentSearch = search;
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            ViewBag.SaleStatuses = _context.SaleStatuses.ToList();
             if (!string.IsNullOrWhiteSpace(search))
                 query = query.Where(x => x.Name.Contains(search) || x.SaleManager.FullName.Contains(search));
 
+            if (cityId != null)
+                query = query.Where(x => x.CityId == cityId);
+            if (saleStatusId != null)
+                query = query.Where(x => x.SaleStatusId == saleStatusId);
+            if (categoryId != null)
+                query = query.Where(x => x.CategoryId == categoryId);
 
             List<Product> products = query.Where(x=>x.IsSold == false).
-                              Include(x => x.SaleManager).
                               Include(x => x.ProductImages).
                               Include(x => x.SaleStatus).
                               Include(x => x.Category).
