@@ -117,7 +117,7 @@
                                                                     }
                                                                     else
                                                                     {
-                                                                <span>@item.SalePrice ₼<label>/Month</label></span>
+                                                                        <span>34,900 ₼<label>/Month</label></span>
                                                                     }
                                                                 </div>
                                                             </div>
@@ -564,7 +564,7 @@
                                             </a>
                                         </label>
                                         
-                                        <span class="categorey-no">@category.Products.Where(x=>x.IsSold == false).Count()</span>
+                                        <span class="categorey-no">@category.Products.Count()</span>
                                     </li>
                                     }
 
@@ -600,7 +600,7 @@
                                                     <span class="checkmark"></span>
                                                 </a>
                                             </label>
-                                            <span class="categorey-no">@saleStatus.Products.Where(x=>x.IsSold == false).Count()</span>
+                                            <span class="categorey-no">@saleStatus.Products.Count()</span>
                                         </li>
                                     }
 

@@ -196,3 +196,4 @@ C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Deb
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_WishListPartial.cshtml.g.cs
+C:\Users\asus\Desktop\AllProject\Backend-Project-Quarter\Quarter\Quarter\obj\Debug\netcoreapp3.1\Quarter.csproj.AssemblyReference.cache
