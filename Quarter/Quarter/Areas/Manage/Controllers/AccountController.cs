@@ -80,7 +80,7 @@ namespace Quarter.Areas.Manage.Controllers
                 return View();
             }
 
-            return RedirectToAction("index","salemanager");
+            return RedirectToAction("index","dashboard");
         }
 
         public async Task<IActionResult> Logout()

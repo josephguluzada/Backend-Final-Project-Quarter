@@ -30,7 +30,7 @@
                     <td>@order.FullName</td>
                     <td>@order.Email</td>
                     <td>@order.CreatedAt.ToString("MMMM dd, yyyy")</td>
-                    <td>@order.Price</td>
+                    <td>@order.Price₼</td>
                     <td>@order.CreatedAt.AddHours(4).ToString("HH:mm dd MMM yyyy")</td>
                     <td>
                         @if (order.Status == Quarter.Models.Enums.OrderStatus.Accepted)
