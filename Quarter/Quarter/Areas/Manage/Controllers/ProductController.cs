@@ -23,11 +23,15 @@ namespace Quarter.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search = null)
         {
-            List<Product> products = _context.Products.Include(x=>x.Category)
+            var query = _context.Products.Include(x=>x.SaleManager).AsQueryable();
+            ViewBag.CurrentSearch = search;
+
+            if (!string.IsNullOrWhiteSpace(search))
+                query = query.Where(x => x.Name.Contains(search) || x.SaleManager.FullName.Contains(search));
+            List<Product> products = query.Include(x=>x.Category)
                                                       .Include(x=>x.City)
-                                                      .Include(x=>x.SaleManager)
                                                       .Include(x=>x.SaleStatus)
                                                       .Include(x=>x.ProductAminities).ThenInclude(x=>x.Aminity)
                                                       .Include(x=>x.ProductImages).ToList();
